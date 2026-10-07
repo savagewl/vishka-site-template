@@ -1,0 +1,111 @@
+.parallax {
+  --p: 0;
+
+  position: relative;
+  height: max(560px, 100svh);
+  overflow: hidden;
+  background: var(--color-ink);
+}
+
+/* Неподвижное растворение сверху: фото мягко выходит из тёмного низа hero */
+.parallax::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 45%;
+  background: linear-gradient(var(--color-ink) 15%, transparent);
+  pointer-events: none;
+}
+
+/* Каждый слой выше секции: при сдвиге по краям не открываются дыры.
+   Сдвиг идёт от -½ до +½ скорости слоя, центр — когда секция посреди экрана. */
+.layer {
+  position: absolute;
+  inset: -20% 0;
+  transform: translate3d(0, calc((var(--p) - 0.5) * var(--speed)), 0);
+  will-change: transform;
+}
+
+/* 1 — дальний: наборная касса в дуотоне */
+.photo {
+  --speed: 60%;
+
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+}
+
+/* 2 — средний: рваная бумага светлее тоном */
+.paper {
+  --speed: 34%;
+
+  z-index: 2;
+  top: auto;
+  height: 88%;
+  background: #3b2270;
+  mask: url('../../assets/shapes/edge-hero.svg') 0 0 / 100% 100% no-repeat;
+  transform: translate3d(0, calc((var(--p) - 0.5) * var(--speed)), 0) scaleX(-1);
+}
+
+/* 3 — заголовок: уходит за передний рваный край, как «ВЫШКА» за здание */
+.titleLayer {
+  --speed: 22%;
+
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2vw;
+  text-align: center;
+}
+
+.caption {
+  font-size: clamp(10px, 0.9vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 12.5vw, 240px);
+  font-weight: 800;
+  line-height: 0.82;
+  text-transform: uppercase;
+  color: var(--color-acid);
+}
+
+/* 4 — ближний: тёмный рваный край, перетекает в манифест */
+.ground {
+  --speed: 6%;
+
+  z-index: 4;
+  top: auto;
+  bottom: -2px;
+  height: 46%;
+  background: var(--color-ink);
+  mask: url('../../assets/shapes/edge-program.svg') 0 0 / 100% 100% no-repeat;
+}
+
+@media (max-width: 640px) {
+  .parallax {
+    height: 520px;
+  }
+
+  .photo {
+    --speed: 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    transform: none;
+  }
+
+  .paper {
+    transform: scaleX(-1);
+  }
+}

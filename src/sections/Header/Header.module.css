@@ -1,0 +1,118 @@
+.header {
+  /* Отступ растёт вместе с hero, чтобы меню стояло по одной линии с заголовком */
+  --bar-pad: calc(39.29 * max(1px, 100cqw / 1088));
+
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-paper);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 60px;
+  padding: 0 var(--bar-pad);
+  background: var(--color-ink);
+}
+
+.links {
+  display: flex;
+  gap: 30.22px;
+}
+
+.link,
+.cta {
+  font-size: 9.82px;
+  line-height: 12.8px;
+}
+
+.link {
+  letter-spacing: 0.38px;
+  transition: color 0.15s;
+}
+
+.link:hover {
+  color: var(--color-acid);
+}
+
+.cta {
+  flex-shrink: 0;
+  border: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+  color: inherit;
+  padding: 9.07px 18.13px;
+  background: var(--color-acid);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--color-paper);
+}
+
+.ticker {
+  display: flex;
+  align-items: center;
+  gap: 12.09px;
+  height: 36px;
+  padding: 0 var(--bar-pad);
+  background: var(--color-acid);
+  font-size: 9.07px;
+  line-height: 11.8px;
+}
+
+.dot {
+  width: 4.53px;
+  height: 4.53px;
+  border-radius: 2.27px;
+  background: currentColor;
+}
+
+.venue {
+  font-weight: 600;
+}
+
+@media (max-width: 1087px) {
+  .nav,
+  .ticker {
+    padding: 0 var(--gutter);
+  }
+}
+
+@media (max-width: 760px) {
+  .links {
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-left: calc(var(--gutter) * -1);
+    padding-left: var(--gutter);
+  }
+
+  .links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .link {
+    white-space: nowrap;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  .ticker {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 4px;
+    height: auto;
+    padding-block: 10px;
+  }
+}

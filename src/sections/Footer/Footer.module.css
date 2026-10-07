@@ -1,0 +1,199 @@
+.footer {
+  zoom: var(--zoom);
+  position: relative;
+  margin-top: -1px;
+  display: flex;
+  flex-direction: column;
+  gap: 60.44px;
+  padding: var(--section-pad) var(--pad-x) 48.36px;
+  background: var(--color-ink);
+  color: var(--color-bone);
+}
+
+/* CTA: лаймовая плашка со «ступенями». Вырезы и внутренняя обводка
+   макета (2.27px цвета фона) заданы одной обрезкой. */
+.cta {
+  --stroke: 2.27px;
+
+  position: relative;
+  height: 328.67px;
+  background: var(--color-acid);
+  color: var(--color-paper);
+  clip-path: polygon(
+    var(--stroke) var(--stroke),
+    calc(100% - 287.55px) var(--stroke),
+    calc(100% - 287.55px) 92.91px,
+    calc(100% - var(--stroke)) 92.91px,
+    calc(100% - var(--stroke)) calc(100% - var(--stroke)),
+    132.77px calc(100% - var(--stroke)),
+    132.77px 202.97px,
+    var(--stroke) 202.97px
+  );
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: 72.53px;
+  font-weight: 800;
+  line-height: 72.5px;
+  text-transform: uppercase;
+}
+
+.ctaLineOne,
+.ctaLineTwo,
+.ctaNoteOne,
+.ctaNoteTwo,
+.ctaButton {
+  position: absolute;
+}
+
+.ctaLineOne {
+  top: 54.87px;
+  left: 39.29px;
+}
+
+.ctaLineTwo {
+  top: 185.58px;
+  right: 18.55px;
+}
+
+.ctaNoteOne,
+.ctaNoteTwo {
+  font-size: 12.09px;
+  font-weight: 600;
+  line-height: 15.7px;
+}
+
+.ctaNoteOne {
+  top: 136.47px;
+  left: 39.29px;
+}
+
+.ctaNoteTwo {
+  top: 258.11px;
+  right: 18.19px;
+}
+
+.ctaButton {
+  top: 202.2px;
+  left: 181.21px;
+  display: flex;
+  justify-content: center;
+  width: 269.99px;
+  padding: 12.09px;
+  border: 0;
+  background: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 18.13px;
+  font-weight: 700;
+  line-height: 21.7px;
+  text-transform: uppercase;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.ctaButton:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0 var(--color-paper);
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px 48.36px;
+  font-family: var(--font-sans);
+  font-size: 10.58px;
+  line-height: 12.5px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12.09px;
+}
+
+.row a:hover {
+  color: var(--color-acid);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18.13px;
+  border-top: var(--hairline) solid var(--color-stone);
+  font-size: 9.07px;
+  line-height: 11.8px;
+  text-transform: uppercase;
+}
+
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12.09px;
+}
+
+.credits a {
+  transition: color 0.15s;
+}
+
+.credits a:hover {
+  color: var(--color-acid);
+}
+
+@media (max-width: 1087px) {
+  .cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    height: auto;
+    padding: 110px 32px 40px;
+  }
+
+  .cta {
+    clip-path: polygon(0 0, 70% 0, 70% 72px, 100% 72px, 100% 100%, 0 100%);
+  }
+
+  .ctaTitle {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(40px, 8vw, 72px);
+    line-height: 0.95;
+  }
+
+  .ctaLineOne,
+  .ctaLineTwo,
+  .ctaNoteOne,
+  .ctaNoteTwo,
+  .ctaButton {
+    position: static;
+  }
+
+  .ctaButton {
+    order: 1;
+    width: auto;
+    padding-inline: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    gap: 40px;
+  }
+
+  .cta {
+    padding: 88px 20px 28px;
+  }
+
+  .links,
+  .bottom {
+    flex-direction: column;
+  }
+
+  .links {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}

@@ -1,0 +1,79 @@
+:root {
+  /* Палитра */
+  --color-ink: #200a40;
+  --color-acid: #afd223;
+  --color-paper: #ffffff;
+  --color-bone: #ebeae4;
+  --color-graphite: #3a3a3a;
+  --color-stone: #787670;
+  --color-stone-dark: #767471;
+  --color-rule: #73726c;
+  --color-smoke: #919191;
+  --color-card-border: #ededed;
+
+  /* Шрифты */
+  --font-display: 'Advent Pro', 'Arial Narrow', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-sans: 'Rubik', system-ui, sans-serif;
+  --font-text: 'Montserrat', system-ui, sans-serif;
+
+  /* Сетка */
+  --page-width: 1088px;
+  --gutter: 60.44px;
+  /* Боковой отступ контента: фоны секций идут на всю ширину экрана,
+     а содержимое держится в колонке --page-width по центру */
+  --pad-x: max(var(--gutter), calc((100% - var(--page-width)) / 2 + var(--gutter)));
+  --section-pad: 90.67px;
+  --radius-card: 24.18px;
+
+  --hairline: 0.76px;
+
+  /* Масштаб секций под hero: на 1088 — макет 1:1, на широких экранах
+     блоки пропорционально крупнее, чтобы не терялись в пустоте */
+  --zoom: 1;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --zoom: 1.12;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --zoom: 1.24;
+  }
+}
+
+@media (min-width: 1680px) {
+  :root {
+    --zoom: 1.38;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --zoom: 1.5;
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --zoom: 1.75;
+  }
+}
+
+@media (max-width: 1087px) {
+  :root {
+    --gutter: 40px;
+    --section-pad: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 16px;
+    --section-pad: 56px;
+    --radius-card: 16px;
+  }
+}

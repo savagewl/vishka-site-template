@@ -1,0 +1,172 @@
+.speakers {
+  zoom: var(--zoom);
+  background: var(--color-ink);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24.18px;
+  padding: var(--section-pad) var(--pad-x);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24.18px;
+}
+
+.top > :first-child {
+  align-self: flex-start;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 261.42px;
+  padding: 18.13px;
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 0 0 var(--hairline) var(--color-card-border);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.photo {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: grayscale(1);
+}
+
+.headliner {
+  flex: 0 0 469.96px;
+  flex-direction: row;
+  gap: 18.13px;
+}
+
+.headliner .photo {
+  flex: 0 0 180px;
+  height: 100%;
+}
+
+.headlinerInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 4px;
+}
+
+.headlinerName,
+.name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.headlinerName {
+  margin: 14px 0 6px;
+  font-size: 32px;
+  line-height: 30px;
+}
+
+.name {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+.role {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 14px;
+  color: var(--color-stone);
+}
+
+.talk {
+  font-size: 13.6px;
+  font-weight: 800;
+  line-height: 17.7px;
+}
+
+.grid .photo {
+  flex: 0 0 150px;
+}
+
+.grid .card > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24.18px;
+}
+
+.slant {
+  height: 99.31px;
+  background: var(--color-paper);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+@media (max-width: 1087px) {
+  .top {
+    flex-direction: column;
+  }
+
+  .headliner {
+    flex-basis: auto;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .slant {
+    height: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .headliner {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .headliner .photo {
+    flex: none;
+    height: 260px;
+  }
+
+  .headlinerInfo {
+    gap: 16px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+
+  .grid .card {
+    height: 240px;
+    padding: 10px;
+  }
+
+  .grid .photo {
+    flex-basis: 140px;
+  }
+
+  .name {
+    font-size: 17px;
+    line-height: 18px;
+  }
+
+  .slant {
+    height: 40px;
+  }
+}

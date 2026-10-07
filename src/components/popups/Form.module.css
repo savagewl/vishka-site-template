@@ -1,0 +1,277 @@
+/* Формы попапов в духе стайлгайда макета: жёсткие бордеры 2px,
+   моноширинный шрифт, нулевой радиус, лаймовые акценты */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.note {
+  font-size: 12.09px;
+  line-height: 15.7px;
+  color: var(--color-graphite);
+}
+
+.stub {
+  font-size: 9.07px;
+  font-weight: 700;
+  line-height: 11.8px;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.label {
+  padding: 0;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 11.9px;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+  color: var(--color-graphite);
+}
+
+.input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid var(--color-graphite);
+  border-radius: 0;
+  background: var(--color-paper);
+  font: inherit;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--color-ink);
+  transition: box-shadow 0.15s;
+}
+
+.input::placeholder {
+  color: var(--color-stone);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-acid);
+}
+
+/* Выбор тарифа — «чипы» из радиокнопок */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  cursor: pointer;
+}
+
+.chip input,
+.check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: block;
+  padding: 9px 16px;
+  box-shadow: inset 0 0 0 2px var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 16.62px;
+  font-weight: 700;
+  line-height: 19.9px;
+  text-transform: uppercase;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.chip input:checked + span {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.chip input:focus-visible + span,
+.check input:focus-visible + span::before {
+  outline: 2px solid var(--color-acid);
+  outline-offset: 2px;
+}
+
+.check {
+  display: flex;
+  cursor: pointer;
+  font-size: 12.09px;
+  line-height: 15.7px;
+}
+
+.check span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check span::before {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-ink);
+  background: var(--color-paper) center / 12px no-repeat;
+}
+
+.check input:checked + span::before {
+  background-color: var(--color-acid);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5.17 11.25 0 6.82l2.25-2.36 3.13 3.35L7.85 0 12 1.8z' fill='%23200A40'/%3E%3C/svg%3E");
+}
+
+.submit {
+  padding: 12px;
+  border: 0;
+  background: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 18.13px;
+  font-weight: 700;
+  line-height: 21.7px;
+  text-transform: uppercase;
+  color: var(--color-paper);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.submit:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0 var(--color-acid);
+}
+
+/* Карточка выбранного билета */
+.summary {
+  padding: 16px 18px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.summaryHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: var(--hairline) solid rgb(237 237 237 / 0.5);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.summaryName {
+  font-size: 24.18px;
+  font-weight: 700;
+}
+
+.summaryPrice {
+  font-size: 24.18px;
+  font-weight: 900;
+  color: var(--color-acid);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  font-size: 12.09px;
+  line-height: 15.7px;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.features svg {
+  flex-shrink: 0;
+}
+
+.stepper {
+  display: flex;
+  align-self: flex-start;
+  box-shadow: inset 0 0 0 2px var(--color-ink);
+}
+
+.stepper button,
+.stepper output {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.stepper button {
+  padding: 0;
+  border: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.stepper button:disabled {
+  background: var(--color-stone);
+  cursor: not-allowed;
+}
+
+.total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 2px solid var(--color-ink);
+}
+
+.totalValue {
+  font-family: var(--font-display);
+  font-size: 36.27px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Экран «готово» после отправки */
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.successMark {
+  padding: 6px 12px;
+  background: var(--color-acid);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-paper);
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: 36.27px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.success .submit {
+  align-self: stretch;
+  margin-top: 6px;
+}

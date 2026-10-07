@@ -1,0 +1,121 @@
+.modal {
+  width: min(520px, 100% - 32px);
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  overflow: visible;
+}
+
+.modal::backdrop {
+  background: rgb(32 10 64 / 0.72);
+}
+
+.modal[open] {
+  animation: drop-in 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.modal[open]::backdrop {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* Брутальная карточка по стайлгайду макета: жёсткий бордер,
+   offset-тень без размытия, нулевой радиус */
+.panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 32px);
+  border: 2.27px solid var(--color-ink);
+  background: var(--color-paper);
+  box-shadow: 10px 10px 0 var(--color-acid);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+  font-size: 9.07px;
+  font-weight: 700;
+  line-height: 11.8px;
+  text-transform: uppercase;
+  color: var(--color-acid);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 36.27px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.close {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  background: var(--color-acid);
+  color: var(--color-paper);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.close:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--color-paper);
+}
+
+.body {
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translate(-10px, -24px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal[open],
+  .modal[open]::backdrop {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    box-shadow: 6px 6px 0 var(--color-acid);
+  }
+
+  .head,
+  .body {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}

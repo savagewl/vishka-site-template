@@ -1,0 +1,202 @@
+/*
+ * Композиция hero собрана в «дизайн-пикселях» макета (ширина 1088).
+ *
+ * --uw — пиксель макета по ширине экрана.
+ * --u  — пиксель композиции. Равен --uw, поэтому слово, заголовок, здание
+ *        и полигоны масштабируются вместе и перекрываются ровно как в макете.
+ *        Меньше --uw он становится только в очень низком окне, чтобы
+ *        «ВЫШКА» и плашка всё равно поместились на первый экран.
+ * --h  — высота hero: как в макете, но не выше первого экрана под шапкой.
+ *        Лишнее срезается снизу (низ здания под рваным краем), а плашка
+ *        статистики прижимается к низу первого экрана.
+ * --s  — --u, но не меньше 1px: мелкий текст плашки не мельчает на планшете.
+ * --p  — прогресс скролла (ставит useScrollProgress): слово и полигоны
+ *        «заходят» за здание при прокрутке вниз и «восходят» обратно.
+ *
+ * Сцена начинается под шапкой: все top сдвинуты на её высоту (96px).
+ */
+.hero {
+  --uw: calc(100cqw / 1088);
+  --u: min(var(--uw), max(0.7px, (100svh - 276px) / 330));
+  --h: min(776 * var(--u), 100svh - 96px);
+  --s: max(1px, var(--u));
+  --p: 0;
+
+  position: relative;
+  height: var(--h);
+  overflow: hidden;
+  background: var(--color-paper);
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+}
+
+.polygons {
+  position: absolute;
+  top: calc(-96 * var(--u));
+  left: 0;
+  width: calc(1088 * var(--uw));
+  height: calc(872 * var(--u));
+  max-width: none;
+  transform: translate3d(0, calc(var(--p) * 200 * var(--uw)), 0);
+  will-change: transform;
+}
+
+.word {
+  position: absolute;
+  top: calc(94.8 * var(--u));
+  left: calc(34.38 * var(--u));
+  font-family: var(--font-display);
+  font-size: calc(239.42 * var(--u));
+  font-weight: 700;
+  line-height: calc(286.3 * var(--u));
+  letter-spacing: calc(-8.75 * var(--u));
+  text-transform: uppercase;
+  color: var(--color-acid);
+  white-space: nowrap;
+  transform: translate3d(0, calc(var(--p) * 480 * var(--u)), 0);
+  will-change: transform;
+}
+
+.building {
+  position: absolute;
+  top: calc(-23.47 * var(--u));
+  left: 0;
+  width: calc(1196.42 * var(--uw));
+  height: calc(799.46 * var(--u));
+  max-width: none;
+}
+
+/* Фиолетовая заливка силуэта в режиме color-dodge — как в макете:
+   красит серое фото в лавандовый и подсвечивает всё, что под вырезом */
+.tint {
+  background: var(--color-ink);
+  mix-blend-mode: color-dodge;
+  mask: url('../../assets/shapes/hero-building-mask.svg') 0 0 / 100% 100% no-repeat;
+}
+
+.title {
+  position: absolute;
+  top: calc(49.09 * var(--u));
+  left: calc(41.93 * var(--u));
+  font-family: var(--font-display);
+  font-size: calc(49.92 * var(--u));
+  font-weight: 700;
+  line-height: calc(45.5 * var(--u));
+  letter-spacing: calc(-2.83 * var(--u));
+  text-transform: uppercase;
+  color: var(--color-ink);
+  opacity: calc(1 - var(--p) * 1.6);
+  transform: translate3d(0, calc(var(--p) * -60 * var(--u)), 0);
+}
+
+.edge {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: calc(106.68 * var(--uw) + 1px);
+}
+
+.stats {
+  position: absolute;
+  bottom: max(20px, var(--h) - 660 * var(--u));
+  left: calc(34.76 * var(--u));
+  right: calc(39.28 * var(--u));
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: calc(18.13 * var(--s)) calc(24.18 * var(--s));
+  background: var(--color-paper);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: calc(3.02 * var(--s));
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: calc(9.07 * var(--s));
+  font-weight: 700;
+  line-height: calc(11.8 * var(--s));
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.statValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: calc(16.62 * var(--s));
+  font-weight: 800;
+  line-height: calc(19.9 * var(--s));
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+/* Мобильная версия: заголовок сверху, под ним сцена со словом и зданием,
+   статистика — отдельной плашкой под рваным краем */
+@media (max-width: 640px) {
+  .hero {
+    --uw: calc(100cqw / 760);
+    --u: var(--uw);
+    --s: 1px;
+    --head: 88px;
+
+    height: auto;
+    background: var(--color-ink);
+  }
+
+  .stage {
+    position: relative;
+    height: round(calc(var(--head) + 620 * var(--u)), 1px);
+    overflow: hidden;
+    /* под рваным краем фон не нужен — иначе на дробной границе просвечивает белая полоса */
+    background: linear-gradient(var(--color-paper) calc(100% - 12px), transparent 0);
+  }
+
+  .title {
+    top: 28px;
+    left: var(--gutter);
+    right: var(--gutter);
+    font-size: 26px;
+    line-height: 25px;
+    letter-spacing: -1.2px;
+  }
+
+  .word {
+    top: calc(var(--head) - 8px);
+    left: var(--gutter);
+    font-size: 33cqw;
+    line-height: 1;
+    letter-spacing: -1.2cqw;
+  }
+
+  .polygons {
+    top: calc(var(--head) - 20 * var(--u));
+    left: calc(-300 * var(--u));
+  }
+
+  .building {
+    top: calc(var(--head) - 30 * var(--u));
+    left: calc(-300 * var(--u));
+  }
+
+  .edge {
+    top: auto;
+    bottom: -2px;
+    height: 46px;
+  }
+
+  .stats {
+    position: relative;
+    inset: auto;
+    flex-direction: column;
+    gap: 14px;
+    margin: -28px var(--gutter) 0;
+    padding: 18px 20px;
+  }
+}

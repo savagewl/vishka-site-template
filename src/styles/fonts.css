@@ -1,0 +1,23 @@
+/* Только кириллица и латиница — остальные алфавиты сайту не нужны */
+@import '@fontsource/advent-pro/cyrillic-600.css';
+@import '@fontsource/advent-pro/latin-600.css';
+@import '@fontsource/advent-pro/cyrillic-700.css';
+@import '@fontsource/advent-pro/latin-700.css';
+@import '@fontsource/advent-pro/cyrillic-800.css';
+@import '@fontsource/advent-pro/latin-800.css';
+@import '@fontsource/advent-pro/cyrillic-900.css';
+@import '@fontsource/advent-pro/latin-900.css';
+@import '@fontsource/geist-mono/cyrillic-400.css';
+@import '@fontsource/geist-mono/latin-400.css';
+@import '@fontsource/geist-mono/cyrillic-600.css';
+@import '@fontsource/geist-mono/latin-600.css';
+@import '@fontsource/geist-mono/cyrillic-700.css';
+@import '@fontsource/geist-mono/latin-700.css';
+@import '@fontsource/geist-mono/cyrillic-800.css';
+@import '@fontsource/geist-mono/latin-800.css';
+@import '@fontsource/rubik/cyrillic-400.css';
+@import '@fontsource/rubik/latin-400.css';
+@import '@fontsource/rubik/cyrillic-700.css';
+@import '@fontsource/rubik/latin-700.css';
+@import '@fontsource/montserrat/cyrillic-400.css';
+@import '@fontsource/montserrat/latin-400.css';
